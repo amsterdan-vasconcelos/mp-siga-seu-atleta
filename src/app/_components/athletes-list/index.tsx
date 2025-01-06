@@ -2,7 +2,7 @@ import { findAthletes } from '@/lib/athletes';
 import { AthletesListClient } from './client';
 
 export async function AthletesList() {
-  const athletes = await findAthletes();
+  const athletes = await findAthletes({});
 
   if (!athletes.length)
     return (
