@@ -1,5 +1,5 @@
 import { findAthletes } from '@/lib/athletes';
-import { AthletesListClient } from './athletes-list-client';
+import { AthletesListClient } from './client';
 
 export async function AthletesList() {
   const athletes = await findAthletes();
