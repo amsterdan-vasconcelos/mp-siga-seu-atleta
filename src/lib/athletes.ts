@@ -14,13 +14,15 @@ type FindAthletesParams = {
   limit?: number;
   search?: string;
   category?: 'olympic' | 'paralympic';
+  sportCode?: string;
 };
 
 export async function findAthletes({
   offset = 0,
   limit = ATHLETES_PER_PAGE,
-  search = '',
+  search,
   category,
+  sportCode,
 }: FindAthletesParams) {
   const isParalympic = category ? category === 'paralympic' : undefined;
 
@@ -32,6 +34,7 @@ export async function findAthletes({
       AND: [
         { instagramName: { contains: search } },
         { paralympic: isParalympic },
+        { sport: { code: sportCode } },
       ],
     },
   });

@@ -3,7 +3,7 @@ import { AthletesListClient } from './client';
 
 type AthletesListProps = {
   filters: {
-    search: string;
+    search?: string;
   };
 };
 

@@ -6,15 +6,18 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import { SearchFilter } from './_components/search-filter';
 import { DesktopFilters } from './_components/desktop';
+import { Sport } from '@/lib/sports';
 
 type FiltersProps = {
   filters: {
     search?: string;
     category?: 'olympic' | 'paralympic';
+    sportCode?: string;
   };
+  sports: Sport[];
 };
 
-export function Filters({ filters }: FiltersProps) {
+export function Filters({ filters, sports }: FiltersProps) {
   const pathname = usePathname();
   const { replace } = useRouter();
   const searchParams = useSearchParams();
@@ -52,12 +55,26 @@ export function Filters({ filters }: FiltersProps) {
     replace(`${pathname}?${params.toString()}`);
   };
 
+  const handleSportChange = (selectedSport: string) => {
+    const params = new URLSearchParams(searchParams);
+
+    if (selectedSport.length === 0) {
+      params.delete('sport');
+    } else {
+      params.set('sport', selectedSport);
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className='relative flex flex-row md:flex-col lg:flex-row gap-8'>
       <SearchFilter defaultValue={search} onChange={handleSearch} />
       <DesktopFilters
         filters={restFilters}
         onCategoryChange={handleCategoryChange}
+        sports={sports}
+        onSportChange={handleSportChange}
       />
     </div>
   );

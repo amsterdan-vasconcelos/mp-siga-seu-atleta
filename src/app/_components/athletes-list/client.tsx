@@ -10,7 +10,7 @@ import { ATHLETES_PER_PAGE } from '@/lib/contants';
 type AthletesListClientProps = {
   initialData: AthleteWithSport[];
   filters: {
-    search: string;
+    search?: string;
   };
 };
 
