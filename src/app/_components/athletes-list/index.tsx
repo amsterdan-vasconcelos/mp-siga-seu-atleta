@@ -1,8 +1,14 @@
 import { findAthletes } from '@/lib/athletes';
 import { AthletesListClient } from './client';
 
-export async function AthletesList() {
-  const athletes = await findAthletes({});
+type AthletesListProps = {
+  filters: {
+    search: string;
+  };
+};
+
+export async function AthletesList({ filters }: AthletesListProps) {
+  const athletes = await findAthletes({ ...filters });
 
   if (!athletes.length)
     return (
@@ -11,5 +17,5 @@ export async function AthletesList() {
       </h2>
     );
 
-  return <AthletesListClient initialData={athletes} />;
+  return <AthletesListClient initialData={athletes} filters={filters} />;
 }

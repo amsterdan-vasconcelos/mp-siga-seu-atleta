@@ -9,9 +9,15 @@ import { ATHLETES_PER_PAGE } from '@/lib/contants';
 
 type AthletesListClientProps = {
   initialData: AthleteWithSport[];
+  filters: {
+    search: string;
+  };
 };
 
-export function AthletesListClient({ initialData }: AthletesListClientProps) {
+export function AthletesListClient({
+  initialData,
+  filters,
+}: AthletesListClientProps) {
   const [offset, setOffset] = useState(ATHLETES_PER_PAGE);
   const [athletes, setAthletes] = useState(initialData);
   const [hasMoreAthletes, setHasMoreAthletes] = useState(
@@ -21,7 +27,7 @@ export function AthletesListClient({ initialData }: AthletesListClientProps) {
 
   const loadMoreAthletes = async () => {
     if (hasMoreAthletes) {
-      const athletesApi = await findAthletes({ offset });
+      const athletesApi = await findAthletes({ offset, ...filters });
 
       if (athletesApi.length < ATHLETES_PER_PAGE) setHasMoreAthletes(false);
       setAthletes((prevAthletes) => [...prevAthletes, ...athletesApi]);
@@ -31,6 +37,7 @@ export function AthletesListClient({ initialData }: AthletesListClientProps) {
 
   useEffect(() => {
     if (isInView && hasMoreAthletes) loadMoreAthletes();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hasMoreAthletes, isInView]);
 
   return (

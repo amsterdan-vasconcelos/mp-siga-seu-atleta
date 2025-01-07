@@ -12,16 +12,21 @@ export type AthleteWithSport = Athlete & {
 type FindAthletesParams = {
   offset?: number;
   limit?: number;
+  search?: string;
 };
 
 export async function findAthletes({
   offset = 0,
   limit = ATHLETES_PER_PAGE,
+  search = '',
 }: FindAthletesParams) {
   const athletes = await prisma.athlete.findMany({
     skip: offset,
     take: limit,
     include: { sport: { select: { name: true } } },
+    where: {
+      AND: [{ instagramName: { contains: search } }],
+    },
   });
 
   return athletes;
