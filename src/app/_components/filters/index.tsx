@@ -13,6 +13,8 @@ type FiltersProps = {
     search?: string;
     category?: 'olympic' | 'paralympic';
     sportCode?: string;
+    sort?: 'followers' | 'name';
+    dir?: 'desc' | 'asc';
   };
   sports: Sport[];
 };
@@ -67,6 +69,18 @@ export function Filters({ filters, sports }: FiltersProps) {
     replace(`${pathname}?${params.toString()}`);
   };
 
+  const handleSortByChange = (selectedSort: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set('sort', selectedSort);
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  const handleDirectionChange = (selectedDirection: 'desc' | 'asc') => {
+    const params = new URLSearchParams(searchParams);
+    params.set('dir', selectedDirection);
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className='relative flex flex-row md:flex-col lg:flex-row gap-8'>
       <SearchFilter defaultValue={search} onChange={handleSearch} />
@@ -75,6 +89,8 @@ export function Filters({ filters, sports }: FiltersProps) {
         onCategoryChange={handleCategoryChange}
         sports={sports}
         onSportChange={handleSportChange}
+        onSortByChange={handleSortByChange}
+        onDirectionChange={handleDirectionChange}
       />
     </div>
   );

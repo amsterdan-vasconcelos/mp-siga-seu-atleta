@@ -15,7 +15,18 @@ type FindAthletesParams = {
   search?: string;
   category?: 'olympic' | 'paralympic';
   sportCode?: string;
+  sort?: 'followers' | 'name';
+  dir?: 'desc' | 'asc';
 };
+
+function getOrderBy(
+  sort: FindAthletesParams['sort'],
+  dir: FindAthletesParams['dir'],
+) {
+  if (sort === 'name') return { instagramName: dir || 'desc' };
+
+  return { instagramFollowersCount: dir || 'desc' };
+}
 
 export async function findAthletes({
   offset = 0,
@@ -23,6 +34,8 @@ export async function findAthletes({
   search,
   category,
   sportCode,
+  sort,
+  dir,
 }: FindAthletesParams) {
   const isParalympic = category ? category === 'paralympic' : undefined;
 
@@ -37,6 +50,7 @@ export async function findAthletes({
         { sport: { code: sportCode } },
       ],
     },
+    orderBy: getOrderBy(sort, dir),
   });
 
   return athletes;

@@ -10,13 +10,21 @@ type HomeProps = {
     q?: string;
     category?: 'olympic' | 'paralympic';
     sport?: string;
+    sort?: 'followers' | 'name';
+    dir?: 'desc' | 'asc';
   }>;
 };
 
 export default async function Home({ searchParams }: HomeProps) {
-  const { q: search, category, sport: sportCode } = await searchParams;
+  const {
+    q: search,
+    category,
+    sport: sportCode,
+    sort,
+    dir,
+  } = await searchParams;
 
-  const filters = { search, category, sportCode };
+  const filters = { search, category, sportCode, sort, dir };
 
   const sports = await findSports();
 
@@ -24,7 +32,7 @@ export default async function Home({ searchParams }: HomeProps) {
     <main className='p-4 flex flex-col gap-10'>
       <Filters filters={filters} sports={sports} />
       <Suspense
-        key={'' + search + category + sportCode}
+        key={'' + search + category + sportCode + sort + dir}
         fallback={<AthletesListSkeleton />}>
         <AthletesList filters={filters} />
       </Suspense>
