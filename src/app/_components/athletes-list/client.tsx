@@ -6,12 +6,11 @@ import { useInView } from 'react-intersection-observer';
 import { AthleteWithSport, findAthletes } from '@/lib/athletes';
 import { AthleteCard } from '../athlete-card';
 import { ATHLETES_PER_PAGE } from '@/lib/contants';
+import { FiltersParams } from '@/app/types/filters';
 
 type AthletesListClientProps = {
   initialData: AthleteWithSport[];
-  filters: {
-    search?: string;
-  };
+  filters: FiltersParams;
 };
 
 export function AthletesListClient({

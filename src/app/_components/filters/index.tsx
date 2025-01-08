@@ -2,15 +2,10 @@ import { SearchFilter } from './components/search-filter';
 import { DesktopFilters } from './components/desktop';
 import { findSports } from '@/lib/sports';
 import { MobileFilters } from './components/mobile';
+import { FiltersParams } from '@/app/types/filters';
 
 type FiltersProps = {
-  filters: {
-    search?: string;
-    category?: 'olympic' | 'paralympic';
-    sportCode?: string;
-    sort?: 'followers' | 'name';
-    dir?: 'desc' | 'asc';
-  };
+  filters: FiltersParams;
 };
 
 export async function Filters({ filters }: FiltersProps) {

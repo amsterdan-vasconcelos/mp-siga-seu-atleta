@@ -16,9 +16,9 @@ export function SearchFilter({ ...props }: SearchFilterProps) {
       const searchedValue = event.target.value;
 
       if (searchedValue) {
-        params.set('q', searchedValue);
+        params.set('search', searchedValue);
       } else {
-        params.delete('q');
+        params.delete('search');
       }
 
       replace(`${pathname}?${params.toString()}`);

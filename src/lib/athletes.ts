@@ -1,5 +1,6 @@
 'use server';
 
+import { Category, Dir, SortBy } from '@/types/filters';
 import { ATHLETES_PER_PAGE } from './contants';
 import prisma from './prisma';
 
@@ -13,10 +14,10 @@ type FindAthletesParams = {
   offset?: number;
   limit?: number;
   search?: string;
-  category?: 'olympic' | 'paralympic';
+  category?: Category;
   sportCode?: string;
-  sort?: 'followers' | 'name';
-  dir?: 'desc' | 'asc';
+  sort?: SortBy;
+  dir?: Dir;
 };
 
 function getOrderBy(

@@ -5,14 +5,10 @@ import { CategoriesFilter } from './categories-filter';
 import { SportsFilter } from './sport-filter';
 import { SortBy } from './sort-by';
 import { useFiltersFunctions } from '../hooks/useFiltersFunctions';
+import { FiltersParamsWithoutSearch } from '@/app/types/filters';
 
 type DesktopFiltersProps = {
-  filters: {
-    category?: 'olympic' | 'paralympic';
-    sportCode?: string;
-    sort?: 'followers' | 'name';
-    dir?: 'desc' | 'asc';
-  };
+  filters: FiltersParamsWithoutSearch;
   sports: Sport[];
 };
 

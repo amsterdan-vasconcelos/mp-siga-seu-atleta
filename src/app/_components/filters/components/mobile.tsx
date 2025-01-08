@@ -15,14 +15,10 @@ import { SportsFilter } from './sport-filter';
 import { SortBy } from './sort-by';
 import { Sport } from '@/lib/sports';
 import { useFiltersFunctions } from '../hooks/useFiltersFunctions';
+import { FiltersParamsWithoutSearch } from '@/app/types/filters';
 
 type MobileFiltersProps = {
-  filters: {
-    category?: 'olympic' | 'paralympic';
-    sportCode?: string;
-    sort?: 'followers' | 'name';
-    dir?: 'desc' | 'asc';
-  };
+  filters: FiltersParamsWithoutSearch;
   sports: Sport[];
 };
 

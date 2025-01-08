@@ -3,25 +3,14 @@ import { Suspense } from 'react';
 import { AthletesList } from './_components/athletes-list';
 import { Filters } from './_components/filters';
 import { AthletesListSkeleton } from './_components/athlete-list-skeleton';
+import { FiltersParams } from './types/filters';
 
 type HomeProps = {
-  searchParams: Promise<{
-    q?: string;
-    category?: 'olympic' | 'paralympic';
-    sport?: string;
-    sort?: 'followers' | 'name';
-    dir?: 'desc' | 'asc';
-  }>;
+  searchParams: Promise<FiltersParams>;
 };
 
 export default async function Home({ searchParams }: HomeProps) {
-  const {
-    q: search,
-    category,
-    sport: sportCode,
-    sort,
-    dir,
-  } = await searchParams;
+  const { search, category, sportCode, sort, dir } = await searchParams;
 
   const filters = { search, category, sportCode, sort, dir };
 

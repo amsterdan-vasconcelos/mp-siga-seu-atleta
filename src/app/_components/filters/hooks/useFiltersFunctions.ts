@@ -22,9 +22,9 @@ export function useFiltersFunctions() {
     const params = new URLSearchParams(searchParams);
 
     if (selectedSport.length === 0) {
-      params.delete('sport');
+      params.delete('sportCode');
     } else {
-      params.set('sport', selectedSport);
+      params.set('sportCode', selectedSport);
     }
 
     replace(`${pathname}?${params.toString()}`);

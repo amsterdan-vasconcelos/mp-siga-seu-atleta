@@ -1,10 +1,9 @@
 import { findAthletes } from '@/lib/athletes';
 import { AthletesListClient } from './client';
+import { FiltersParams } from '@/app/types/filters';
 
 type AthletesListProps = {
-  filters: {
-    search?: string;
-  };
+  filters: FiltersParams;
 };
 
 export async function AthletesList({ filters }: AthletesListProps) {
