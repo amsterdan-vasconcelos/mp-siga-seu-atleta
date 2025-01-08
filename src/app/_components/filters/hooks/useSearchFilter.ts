@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { useHandleUrl } from './useHandleUrl';
+import { FiltersParamsName } from '@/app/types/filters';
 
 export function useSearchFilter() {
   const { searchParams, pathname, replace } = useHandleUrl();
@@ -11,9 +12,9 @@ export function useSearchFilter() {
       const searchedValue = event.target.value;
 
       if (searchedValue) {
-        params.set('search', searchedValue);
+        params.set(FiltersParamsName.search, searchedValue);
       } else {
-        params.delete('search');
+        params.delete(FiltersParamsName.search);
       }
 
       replace(`${pathname}?${params.toString()}`);

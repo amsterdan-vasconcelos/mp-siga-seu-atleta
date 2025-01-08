@@ -1,5 +1,6 @@
 import { Category, Dir } from '@/types/filters';
 import { useHandleUrl } from './useHandleUrl';
+import { FiltersParamsName } from '@/app/types/filters';
 
 export function useFiltersFunctions() {
   const { searchParams, pathname, replace } = useHandleUrl();
@@ -9,9 +10,9 @@ export function useFiltersFunctions() {
 
     const params = new URLSearchParams(searchParams);
     if (selectedCategory !== 'all') {
-      params.set('category', selectedCategory);
+      params.set(FiltersParamsName.category, selectedCategory);
     } else {
-      params.delete('category');
+      params.delete(FiltersParamsName.category);
     }
 
     replace(`${pathname}?${params.toString()}`);
@@ -21,9 +22,9 @@ export function useFiltersFunctions() {
     const params = new URLSearchParams(searchParams);
 
     if (selectedSport.length === 0) {
-      params.delete('sportCode');
+      params.delete(FiltersParamsName.sportCode);
     } else {
-      params.set('sportCode', selectedSport);
+      params.set(FiltersParamsName.sportCode, selectedSport);
     }
 
     replace(`${pathname}?${params.toString()}`);
@@ -31,13 +32,13 @@ export function useFiltersFunctions() {
 
   const handleSortByChange = (selectedSort: string) => {
     const params = new URLSearchParams(searchParams);
-    params.set('sort', selectedSort);
+    params.set(FiltersParamsName.sort, selectedSort);
     replace(`${pathname}?${params.toString()}`);
   };
 
   const handleDirectionChange = (selectedDirection: Dir) => {
     const params = new URLSearchParams(searchParams);
-    params.set('dir', selectedDirection);
+    params.set(FiltersParamsName.dir, selectedDirection);
     replace(`${pathname}?${params.toString()}`);
   };
 

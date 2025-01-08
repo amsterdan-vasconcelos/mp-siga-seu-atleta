@@ -1,16 +1,24 @@
 import { Category, SortBy, Dir } from '@/types/filters';
 
+export enum FiltersParamsName {
+  search = 'search',
+  sportCode = 'sportCode',
+  category = 'category',
+  sort = 'sort',
+  dir = 'dir',
+}
+
 export type FiltersParams = {
-  search?: string;
-  sportCode?: string;
-  category?: Category;
-  sort?: SortBy;
-  dir?: Dir;
+  [FiltersParamsName.search]?: string;
+  [FiltersParamsName.sportCode]?: string;
+  [FiltersParamsName.category]?: Category;
+  [FiltersParamsName.sort]?: SortBy;
+  [FiltersParamsName.dir]?: Dir;
 };
 
 export type FiltersParamsWithoutSearch = {
-  sportCode?: string;
-  category?: Category;
-  sort?: SortBy;
-  dir?: Dir;
+  [FiltersParamsName.sportCode]?: string;
+  [FiltersParamsName.category]?: Category;
+  [FiltersParamsName.sort]?: SortBy;
+  [FiltersParamsName.dir]?: Dir;
 };
