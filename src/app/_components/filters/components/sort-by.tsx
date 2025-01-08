@@ -8,12 +8,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { Dir, SortBy as Sort } from '@/types/filters';
 
 type SortByProps = {
-  sort?: 'followers' | 'name';
+  sort?: Sort;
   onSortByChange: (selectedSort: string) => void;
-  dir?: 'desc' | 'asc';
-  onDirectionChange: (selectedDirection: 'desc' | 'asc') => void;
+  dir?: Dir;
+  onDirectionChange: (selectedDirection: Dir) => void;
 };
 
 export function SortBy({
