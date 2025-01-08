@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { CardGrainyBackground } from './CardGrainyBackground';
+import { CardGrainyBackground } from './card-grainy-background';
 
 type AthleteCardProps = {
   athlete: AthleteWithSport;
