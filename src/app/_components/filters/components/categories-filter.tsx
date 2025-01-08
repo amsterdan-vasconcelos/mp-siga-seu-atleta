@@ -1,10 +1,9 @@
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Category } from '@/types/filters';
 
 type CategoriesFilterProps = {
-  category?: 'olympic' | 'paralympic';
-  onCategoryChange: (
-    selectedCategory: 'olympic' | 'paralympic' | 'all',
-  ) => void;
+  category?: Category;
+  onCategoryChange: (selectedCategory: Category | 'all') => void;
 };
 
 export function CategoriesFilter({
