@@ -4,10 +4,10 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ChangeEvent } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { SearchFilter } from './_components/search-filter';
-import { DesktopFilters } from './_components/desktop';
+import { SearchFilter } from './components/search-filter';
+import { DesktopFilters } from './components/desktop';
 import { Sport } from '@/lib/sports';
-import { MobileFilters } from './_components/mobile';
+import { MobileFilters } from './components/mobile';
 
 type FiltersProps = {
   filters: {
