@@ -7,6 +7,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { SearchFilter } from './_components/search-filter';
 import { DesktopFilters } from './_components/desktop';
 import { Sport } from '@/lib/sports';
+import { MobileFilters } from './_components/mobile';
 
 type FiltersProps = {
   filters: {
@@ -84,6 +85,16 @@ export function Filters({ filters, sports }: FiltersProps) {
   return (
     <div className='relative flex flex-row md:flex-col lg:flex-row gap-8'>
       <SearchFilter defaultValue={search} onChange={handleSearch} />
+
+      <MobileFilters
+        sports={sports}
+        filters={restFilters}
+        onCategoryChange={handleCategoryChange}
+        onSportChange={handleSportChange}
+        onSortByChange={handleSortByChange}
+        onDirectionChange={handleDirectionChange}
+      />
+
       <DesktopFilters
         filters={restFilters}
         onCategoryChange={handleCategoryChange}
