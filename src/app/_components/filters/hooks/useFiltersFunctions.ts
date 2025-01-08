@@ -1,11 +1,10 @@
+import { Category, Dir } from '@/types/filters';
 import { useHandleUrl } from './useHandleUrl';
 
 export function useFiltersFunctions() {
   const { searchParams, pathname, replace } = useHandleUrl();
 
-  const handleCategoryChange = (
-    selectedCategory: 'olympic' | 'paralympic' | 'all',
-  ) => {
+  const handleCategoryChange = (selectedCategory: Category | 'all') => {
     if (selectedCategory.length === 0) return;
 
     const params = new URLSearchParams(searchParams);
@@ -36,7 +35,7 @@ export function useFiltersFunctions() {
     replace(`${pathname}?${params.toString()}`);
   };
 
-  const handleDirectionChange = (selectedDirection: 'desc' | 'asc') => {
+  const handleDirectionChange = (selectedDirection: Dir) => {
     const params = new URLSearchParams(searchParams);
     params.set('dir', selectedDirection);
     replace(`${pathname}?${params.toString()}`);
