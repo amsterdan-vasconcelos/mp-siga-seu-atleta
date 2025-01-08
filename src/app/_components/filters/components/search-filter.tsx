@@ -15,7 +15,6 @@ export function SearchFilter({ ...props }: SearchFilterProps) {
       <SearchInput
         className='w-56 md:w-full lg:w-56'
         type='text'
-        name='q'
         placeholder='Pesquisar'
         onChange={handleSearch}
         {...props}
