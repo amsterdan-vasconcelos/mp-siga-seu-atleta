@@ -1,7 +1,10 @@
+'use client';
+
 import { Sport } from '@/lib/sports';
 import { CategoriesFilter } from './categories-filter';
 import { SportsFilter } from './sport-filter';
 import { SortBy } from './sort-by';
+import { useFiltersFunctions } from '../hooks/useFiltersFunctions';
 
 type DesktopFiltersProps = {
   filters: {
@@ -10,23 +13,17 @@ type DesktopFiltersProps = {
     sort?: 'followers' | 'name';
     dir?: 'desc' | 'asc';
   };
-  onCategoryChange: (
-    selectedCategory: 'olympic' | 'paralympic' | 'all',
-  ) => void;
   sports: Sport[];
-  onSportChange: (selectedSport: string) => void;
-  onSortByChange: (selectedSort: string) => void;
-  onDirectionChange: (selectedDirection: 'desc' | 'asc') => void;
 };
 
-export function DesktopFilters({
-  filters,
-  onCategoryChange,
-  sports,
-  onSportChange,
-  onSortByChange,
-  onDirectionChange,
-}: DesktopFiltersProps) {
+export function DesktopFilters({ filters, sports }: DesktopFiltersProps) {
+  const {
+    handleCategoryChange,
+    handleSportChange,
+    handleSortByChange,
+    handleDirectionChange,
+  } = useFiltersFunctions();
+
   const { category, sportCode, sort, dir } = filters;
 
   return (
@@ -34,20 +31,20 @@ export function DesktopFilters({
       <div className='flex gap-8'>
         <CategoriesFilter
           category={category}
-          onCategoryChange={onCategoryChange}
+          onCategoryChange={handleCategoryChange}
         />
         <SportsFilter
           sportCode={sportCode}
           sports={sports}
-          onSportChange={onSportChange}
+          onSportChange={handleSportChange}
         />
       </div>
 
       <SortBy
         sort={sort}
         dir={dir}
-        onSortByChange={onSortByChange}
-        onDirectionChange={onDirectionChange}
+        onSortByChange={handleSortByChange}
+        onDirectionChange={handleDirectionChange}
       />
     </div>
   );

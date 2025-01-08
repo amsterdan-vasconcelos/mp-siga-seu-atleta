@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { GoFilter } from 'react-icons/go';
 
@@ -12,6 +14,7 @@ import { CategoriesFilter } from './categories-filter';
 import { SportsFilter } from './sport-filter';
 import { SortBy } from './sort-by';
 import { Sport } from '@/lib/sports';
+import { useFiltersFunctions } from '../hooks/useFiltersFunctions';
 
 type MobileFiltersProps = {
   filters: {
@@ -20,24 +23,17 @@ type MobileFiltersProps = {
     sort?: 'followers' | 'name';
     dir?: 'desc' | 'asc';
   };
-  onCategoryChange: (
-    selectedCategory: 'olympic' | 'paralympic' | 'all',
-  ) => void;
   sports: Sport[];
-  onSportChange: (selectedSport: string) => void;
-  onSortByChange: (selectedSort: string) => void;
-  onDirectionChange: (selectedDirection: 'desc' | 'asc') => void;
 };
 
-export function MobileFilters({
-  sports,
-  filters,
-  onCategoryChange,
-  onSportChange,
-  onSortByChange,
-  onDirectionChange,
-}: MobileFiltersProps) {
+export function MobileFilters({ sports, filters }: MobileFiltersProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const {
+    handleCategoryChange,
+    handleSportChange,
+    handleSortByChange,
+    handleDirectionChange,
+  } = useFiltersFunctions();
 
   const { sportCode, category, sort, dir } = filters;
 
@@ -66,18 +62,18 @@ export function MobileFilters({
 
           <CategoriesFilter
             category={category}
-            onCategoryChange={closeAfter(onCategoryChange)}
+            onCategoryChange={closeAfter(handleCategoryChange)}
           />
           <SportsFilter
             sportCode={sportCode}
             sports={sports}
-            onSportChange={closeAfter(onSportChange)}
+            onSportChange={closeAfter(handleSportChange)}
           />
           <SortBy
             sort={sort}
             dir={dir}
-            onSortByChange={closeAfter(onSortByChange)}
-            onDirectionChange={closeAfter(onDirectionChange)}
+            onSortByChange={closeAfter(handleSortByChange)}
+            onDirectionChange={closeAfter(handleDirectionChange)}
           />
         </DrawerContent>
       </Drawer>
