@@ -1,30 +1,14 @@
 'use client';
 
+import { InputHTMLAttributes } from 'react';
+
 import { SearchInput } from '@/components/ui/input';
-import { ChangeEvent, InputHTMLAttributes } from 'react';
-import { useDebouncedCallback } from 'use-debounce';
-import { useHandleUrl } from '../hooks/useHandleUrl';
+import { useSearchFilter } from '../hooks/useSearchFilter';
 
 type SearchFilterProps = InputHTMLAttributes<HTMLInputElement>;
 
 export function SearchFilter({ ...props }: SearchFilterProps) {
-  const { searchParams, pathname, replace } = useHandleUrl();
-
-  const handleSearch = useDebouncedCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const params = new URLSearchParams(searchParams);
-      const searchedValue = event.target.value;
-
-      if (searchedValue) {
-        params.set('search', searchedValue);
-      } else {
-        params.delete('search');
-      }
-
-      replace(`${pathname}?${params.toString()}`);
-    },
-    200,
-  );
+  const { handleSearch } = useSearchFilter();
 
   return (
     <div>
