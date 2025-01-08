@@ -3,7 +3,7 @@
 import { Sport } from '@/lib/sports';
 import { CategoriesFilter } from './categories-filter';
 import { SportsFilter } from './sport-filter';
-import { SortBy } from './sort-by';
+import { SortByFilter } from './sort-by-filter';
 import { useFiltersFunctions } from '../hooks/useFiltersFunctions';
 import { FiltersParamsWithoutSearch } from '@/app/types/filters';
 
@@ -36,7 +36,7 @@ export function DesktopFilters({ filters, sports }: DesktopFiltersProps) {
         />
       </div>
 
-      <SortBy
+      <SortByFilter
         sort={sort}
         dir={dir}
         onSortByChange={handleSortByChange}

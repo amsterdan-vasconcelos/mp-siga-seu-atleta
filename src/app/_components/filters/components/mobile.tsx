@@ -12,7 +12,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { CategoriesFilter } from './categories-filter';
 import { SportsFilter } from './sport-filter';
-import { SortBy } from './sort-by';
+import { SortByFilter } from './sort-by-filter';
 import { Sport } from '@/lib/sports';
 import { useFiltersFunctions } from '../hooks/useFiltersFunctions';
 import { FiltersParamsWithoutSearch } from '@/app/types/filters';
@@ -65,7 +65,7 @@ export function MobileFilters({ sports, filters }: MobileFiltersProps) {
             sports={sports}
             onSportChange={closeAfter(handleSportChange)}
           />
-          <SortBy
+          <SortByFilter
             sort={sort}
             dir={dir}
             onSortByChange={closeAfter(handleSortByChange)}

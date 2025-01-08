@@ -17,7 +17,7 @@ type SortByProps = {
   onDirectionChange: (selectedDirection: Dir) => void;
 };
 
-export function SortBy({
+export function SortByFilter({
   sort,
   onSortByChange,
   onDirectionChange,
