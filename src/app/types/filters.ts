@@ -16,9 +16,7 @@ export type FiltersParams = {
   [FiltersParamsName.dir]?: Dir;
 };
 
-export type FiltersParamsWithoutSearch = {
-  [FiltersParamsName.sportCode]?: string;
-  [FiltersParamsName.category]?: Category;
-  [FiltersParamsName.sort]?: SortBy;
-  [FiltersParamsName.dir]?: Dir;
-};
+export type FiltersParamsWithoutSearch = Omit<
+  FiltersParams,
+  FiltersParamsName.search
+>;
